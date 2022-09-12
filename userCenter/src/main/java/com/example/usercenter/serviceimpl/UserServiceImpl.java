@@ -58,10 +58,6 @@ public class UserServiceImpl implements UserService {
             return ServerResponse.createByErrorMessage("手机号已经注册过");
         }
         // MD5 加密
-        User user = User.builder()
-                        .phone(phone)
-                        .password(Md5Util.md5EncodeUtf8(password))
-                        .build();
         int resultCount2 = userMapper.insertUser(phone, Md5Util.md5EncodeUtf8(password));
         if(resultCount2 == 0) {
             log.warn("用户手机号{}注册异常", phone);

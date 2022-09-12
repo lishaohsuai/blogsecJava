@@ -38,7 +38,7 @@ public class UserController {
             String uuidToken = UUID.randomUUID().toString();
             uuidToken = uuidToken.replace("-","");
             User user = response.getData();
-            user.setToken(uuidToken);
+            user.setPassword(""); // 不应该返回前端密码
             response.setData(user);
             //建议token和用户登陆态之间的联系
             redisTemplate.opsForValue().set(uuidToken,response.getData());
@@ -49,7 +49,6 @@ public class UserController {
 
     /**
      * 用户注册
-     * @param user 用户信息
      * @return ServerResponse
      */
     @PostMapping("/register")

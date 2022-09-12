@@ -1,12 +1,12 @@
 package com.example.usercenter.dao;
 
 import com.example.usercenter.bean.pojo.User;
-import org.apache.ibatis.annotations.Param;
+import io.lettuce.core.dynamic.annotation.Param;
 
-public interface UserMapper extends BaseMapper<User>{
-    User userLogin(@Param("phone")String phone,@Param("password") String password);
+public interface UserMapper extends BaseMapper<User> {
+    User userLogin(@Param("phone") String phone, @Param("password") String password);
 
-    int checkPhone(@Param("phone")String phone);
+    int checkPhone(@Param("phone") String phone);
 
-    int insertUser(@Param("phone")String phone, @Param("password")String password);
+    int insertUser(@Param("phone") String phone, @Param("password") String password);
 }

@@ -1,11 +1,12 @@
 package com.example.usercenter;
 
+import com.example.usercenter.dao.BaseMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import tk.mybatis.spring.annotation.MapperScan;
 
 @SpringBootApplication
-@MapperScan("com.example.usercenter.dao")
+@MapperScan(basePackages = "com.example.usercenter.dao", markerInterface = BaseMapper.class)
 public class UserCenterApplication {
 
     public static void main(String[] args) {
