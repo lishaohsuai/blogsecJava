@@ -9,4 +9,5 @@ import org.springframework.stereotype.Service;
 public interface UserService {
     ServerResponse<User> login(String phone, String password);
     ServerResponse<String> getOpt(String phone);
+    ServerResponse<String> register(String phone, String password);
 }

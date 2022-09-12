@@ -5,6 +5,7 @@ import com.example.usercenter.bean.pojo.User;
 import com.example.usercenter.common.ServerResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,7 +26,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @Autowired
+    @Qualifier
     private RedisTemplate redisTemplate;
 
     @PostMapping("/login")
@@ -44,6 +45,17 @@ public class UserController {
             redisTemplate.expire(uuidToken,1, TimeUnit.HOURS);
         }
         return response;
+    }
+
+    /**
+     * 用户注册
+     * @param user 用户信息
+     * @return ServerResponse
+     */
+    @PostMapping("/register")
+    public ServerResponse<String> register(String phone, String password) {
+        log.info("注册->用户手机{}, 用户密码{}", phone, password);
+        return userService.register(phone, password);
     }
 
 

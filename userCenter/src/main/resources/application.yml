@@ -1,15 +1,47 @@
 #??springboot?redis???
+#spring:
+#  redis:
+#    host: 106.14.105.113
+#    port: 6379
+#    database: 10
+#    #??jedis???
+#    jedis:
+#      pool:
+#        max-active: 50
+#        min-idle: 20
 spring:
-  redis:
-    host: 106.14.105.113
-    port: 6379
-    database: 10
-    #??jedis???
-    jedis:
-      pool:
-        max-active: 50
-        min-idle: 20
+  datasource:
+    url: jdbc:mysql://120.46.174.38:3306/nbcb_db?characterEncoding=utf-8&useSSL=false
+    username: root
+    password: Nbcb,111
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+server:
+  port: 8080
+
 
 #md5??
 password:
   salt: geelysdafaqj23ou89ZXcj@#$@#$#@KJdjklj;D../dSF.,
+
+
+
+mybatis:
+  #mapper.xml文件的位置
+  mapper-locations: classpath:mappers/*.xml
+  #pojo 类的位置
+  type-aliases-package: com.example.usercenter.bean.pojo
+  configuration:
+    # 开启驼峰命名
+    map-underscore-to-camel-case: true
+pagehelper:
+  # 设置数据库类型
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+mapper:
+  #多个用“，”隔开
+  mappers: com.example.usercenter.dao.BaseMapper
+  not-empty: false
+  identity: MYSQL

@@ -9,7 +9,9 @@ import org.springframework.core.env.Environment;
 @Configuration
 @PropertySource("classpath:application.yml")
 public class PropertiesUtil implements EnvironmentAware {
+
     private static Environment env;
+
     @Override
     public void setEnvironment(Environment environment) {
         PropertiesUtil.env = environment;
