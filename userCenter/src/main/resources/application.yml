@@ -1,0 +1,15 @@
+#??springboot?redis???
+spring:
+  redis:
+    host: 106.14.105.113
+    port: 6379
+    database: 10
+    #??jedis???
+    jedis:
+      pool:
+        max-active: 50
+        min-idle: 20
+
+#md5??
+password:
+  salt: geelysdafaqj23ou89ZXcj@#$@#$#@KJdjklj;D../dSF.,
