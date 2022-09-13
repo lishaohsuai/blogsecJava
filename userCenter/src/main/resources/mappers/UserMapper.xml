@@ -21,6 +21,15 @@
     <result column="resume" jdbcType="LONGVARCHAR" property="resume" />
   </resultMap>
 
+    <resultMap id="OtpCodeBaseResultMap" type="com.example.usercenter.dataobject.OptCodeDo">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <result column="phone" jdbcType="VARCHAR" property="phone"/>
+        <result column="otpCode" jdbcType="VARCHAR" property="otpCode"/>
+        <result column="updateTime" jdbcType="VARCHAR" property="updateTime"/>
+    </resultMap>
+
     <sql id="Base_Column_List">
         id, username, password, email, phone, create_time, update_time
     </sql>
@@ -33,14 +42,34 @@
         and password = #{password}
     </select>
 
+    <select id="userLoginByPhone" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from nbcb_user
+        where phone = #{phone}
+    </select>
+
     <select id="checkPhone" resultType="java.lang.Integer">
         select count(1) from nbcb_user
         where phone = #{phone}
     </select>
 
+    <select id="getOtpCodeByPhone" resultMap="OtpCodeBaseResultMap">
+        select phone, otpCode, updateTime
+        from nbcb_otp
+        where phone = #{phone}
+        order by updateTime desc
+        limit 1
+    </select>
+
     <insert id="insertUser" parameterType="com.example.usercenter.dataobject.UserDo">
         insert into nbcb_user (phone, password)
         values(#{phone,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR})
+    </insert>
+
+    <insert id="insertOtpCode" parameterType="com.example.usercenter.dataobject.OptCodeDo">
+        insert into nbcb_otp (phone, otpCode, updateTime)
+        values(#{phone,jdbcType=VARCHAR}, #{otpCode,jdbcType=VARCHAR}, #{updateTime,jdbcType=VARCHAR})
     </insert>
 
 </mapper>

@@ -71,6 +71,17 @@ public class ServerResponse<T> implements Serializable {
         return new ServerResponse<>(ResponseCode.SUCCESS.getCode(), msg, data);
     }
     /**
+     * 请求失败，带提示信息、数据
+     *
+     * @param msg
+     * @param data
+     * @param <T>
+     * @return
+     */
+    public static <T> ServerResponse<T> createByError(String msg, T data) {
+        return new ServerResponse<>(ResponseCode.ERROR.getCode(), msg, data);
+    }
+    /**
      * 请求失败，带提示信息
      * @param errorMsg
      * @param <T>

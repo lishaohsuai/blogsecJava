@@ -18,7 +18,8 @@ alter table nbcb_user modify id int auto_increment;
 CREATE TABLE nbcb_otp (
 id INT,
 phone VARCHAR(32),
-otpCode VARCHAR(32)
+otpCode VARCHAR(32),
+updateTime VARCHAR(32)
 ) CHARSET utf8 ENGINE INNODB;
 
 alter table nbcb_otp add primary key(id);
